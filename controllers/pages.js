@@ -1,5 +1,5 @@
 var welcome = function(req, res, next) {
-  res.render('pages/welcome');
+  res.render('pages/index');
 };
 
 module.exports = {
