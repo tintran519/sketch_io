@@ -21,6 +21,16 @@ io.on('connection', function(socket) {
   });
 });
 
+//=====================
+io.on('connection', function(socket) {
+  console.log('Client connected to socket.io!');
+  socket.on('drawn_line'), function(data) {
+
+  }
+
+})
+
+
 
 // io represents socket.io on the server
 module.exports = io;

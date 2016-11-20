@@ -70,6 +70,10 @@
 document.addEventListener("DOMContentLoaded", function() {
 console.log('ready');
 
+//Socket Implementation
+var socket = io();
+console.log(socket);
+
 var boardDiv = document.getElementById('boardDiv');
 canvas = document.createElement('canvas');
 canvas.setAttribute('width', 1000);
@@ -123,7 +127,9 @@ function addClick(x, y, dragging) {
 }
   clickSize.push(curSize);
   clickShape.push(curShape);
+  clickFill.push(Fill);
 }
+
 
 // function that clears canvas is everything redrawn
 
@@ -137,6 +143,7 @@ function redraw() {
 
   for(var i = 0; i < clickX.length; i++) {
     curShape = clickShape[i];
+    Fill = clickFill[i];
     context.beginPath();
     if(curShape === "triangle") {
         drawTriangle(i);
@@ -232,8 +239,14 @@ function drawTriangle (i) {
       context.moveTo(clickX[i], clickY[i]);
       context.lineTo(clickX[i]+25, clickY[i]+25);
       context.lineTo(clickX[i]+25, clickY[i]-25);
-      context.fillStyle = clickColor[i];
-      context.fill();
+      context.closePath();
+      if (Fill) {
+        context.fillStyle = clickColor[i];
+        context.fill();
+      } else {
+        context.strokeStyle = clickColor[i];
+        context.stroke();
+    }
 };
 
 function drawSquare (i) {
@@ -242,17 +255,38 @@ function drawSquare (i) {
       context.lineTo(clickX[i]+25, clickY[i]+25);
       context.lineTo(clickX[i], clickY[i]+25);
       context.closePath();
-      context.fillStyle = clickColor[i];
-      context.fill();
+      if (Fill) {
+        context.fillStyle = clickColor[i];
+        context.fill();
+      } else {
+        context.strokeStyle = clickColor[i];
+        context.stroke();
+    }
 };
 
 
 function drawCircle (i) {
   context.arc(clickX[i], clickY[i], 25, 0, 2*Math.PI);
-  context.fillStyle = clickColor[i];
-  context.fill();
+      if (Fill) {
+        context.fillStyle = clickColor[i];
+        context.fill();
+      } else {
+        context.strokeStyle = clickColor[i];
+        context.stroke();
+    }
 };
 
+//Solid or Outline
+var clickFill = [];
+var Fill = false;
+
+$('button#fill').on('click', function(){
+  Fill = true;
+})
+
+$('button#outline').on('click', function(){
+  Fill = false;
+})
 //Shape buttons
 $('button#triangle').on('click', function() {
   curShape = "triangle";
@@ -286,5 +320,24 @@ function clear(){
 
 //Clear button
 $('button#clear').on('click', clear);
+
+//Socket
+//var sessionId = io.socket.sessionid;
+  drawData = {
+  x: clickX,
+  y: clickY,
+  drag: clickDrag,
+  userDraw: userDraw,
+  color: clickColor,
+  shape: clickShape,
+  size: clickSize
+};
+
+socket.emit('drawn_line', drawData);
+console.log(drawData);
+
+// socket.on('drawn_line', function(data) {
+
+// })
 
 });
