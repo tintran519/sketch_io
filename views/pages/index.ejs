@@ -4,9 +4,27 @@
   <%- include('../partials/head') %>
 </head>
 <body>
-  <canvas id="board"></canvas>
+<h1>Sketch I/O</h1><br>
+  <!-- <canvas id="board"></canvas> -->
+    <div id="boardDiv"></div>
 
+    <div id="colors">Color
+      <button id="black">Black</button>
+      <button id="blue">Blue</button>
+      <button id="red">Red</button>
+      <button id="yellow">Yellow</button>
+    </div>
 
+    <div id="size">Size
+      <button id="small">Small</button>
+      <button id="normal">Normal</button>
+      <button id="large">Large</button>
+    </div>
+
+    <div id="Tools">Tools
+      <button id="eraser">Eraser</button>
+      <button id="pencil">Pencil</button>
+    </div>
   <%- include('../partials/scripts') %>
 </body>
 </html>
