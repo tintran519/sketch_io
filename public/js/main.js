@@ -121,14 +121,14 @@ function addClick(x, y, dragging) {
   } else{
   clickColor.push(curColor);
 }
-  //clickColor.push(curColor);
   clickSize.push(curSize);
+  clickShape.push(curShape);
 }
 
 // function that clears canvas is everything redrawn
 
 function redraw() {
-  //clear canvas
+  //clear canvas to allow next set of drawing parameters
   context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
   //context.strokeStyle = "#df4b26";
@@ -136,18 +136,24 @@ function redraw() {
   //context.lineWidth = 1;
 
   for(var i = 0; i < clickX.length; i++) {
+    curShape = clickShape[i];
     context.beginPath();
+    if(curShape === "triangle") {
+        drawtriangle(i);
+    } else{
+
     if(clickDrag[i] && i) {
       context.moveTo(clickX[i-1], clickY[i-1]);
     } else {
-      context.moveTo(clickX[i]-1, clickY[i]);
+      context.moveTo(clickX[i], clickY[i]);
     }
       context.lineTo(clickX[i], clickY[i]);
-      context.closePath();
+      // context.closePath();
       context.strokeStyle = clickColor[i];
       context.lineWidth = clickSize[i];
       context.stroke();
     }
+   }
   }
 
 
@@ -181,7 +187,7 @@ $('button#black').on('click',function(){
 //Size Selection
 var normal = 3;
 var small = 1;
-var large = 5;
+var large = 7;
 
 var curSize = normal;
 var clickSize = [];
@@ -200,10 +206,10 @@ $('button#large').on('click', function() {
 })
 
 //Eraser
-
 var clickTool = [];
 var curTool = "pencil";
 
+//Eraser buttons
 $('button#eraser').on('click', function() {
   curTool = "eraser";
 });
@@ -212,7 +218,27 @@ $('button#pencil').on('click', function() {
   curTool = "pencil";
 });
 
+//Shapes
+var clickShape = [];
+var curShape = "line"
 
+function drawtriangle (i) {
+      context.moveTo(clickX[i], clickY[i]);
+      context.lineTo(clickX[i]+25, clickY[i]+25);
+      context.lineTo(clickX[i]+25, clickY[i]-25);
+      context.fillStyle = clickColor[i];
+      context.fill();
+};
+
+
+//Shape buttons
+$('button#triangle').on('click', function() {
+  curShape = "triangle";
+})
+
+$('button#line').on('click', function() {
+  curShape = "line";
+})
 
 
 
