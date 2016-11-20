@@ -3,7 +3,11 @@ var mongoose = require('mongoose'),
 
 var userSchema = new mongoose.Schema({
   name:   String,
-  handle: String
+  //Changed 'handle' to email
+  email: String,
+  //Creating field for Google ID (Roy)
+  googleId: String
+
 });
 
 var User = mongoose.model('User', userSchema);

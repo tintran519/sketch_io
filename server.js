@@ -8,11 +8,16 @@ var cookieParser = require('cookie-parser');
 
 // Require express-session (Roy)
 var session      = require('express-session');
+// Require passport (Roy)
+var passport     = require('passport');
 
 // Load local libraries.
 var env      = require('./config/environment'),
     mongoose = require('./config/database'),
     routes   = require('./config/routes');
+
+//require config/passport.js (Roy)
+require('./config/passport');
 
 // Load the Env Vars (Roy)
 require('dotenv').config();
@@ -45,6 +50,10 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+
+// Mounting Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routing layers: favicon, static assets, dynamic routes, or 404…
 
