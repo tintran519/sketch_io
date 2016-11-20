@@ -11,6 +11,9 @@ var session      = require('express-session');
 // Require passport (Roy)
 var passport     = require('passport');
 
+// Load the Env Vars (Roy)
+require('dotenv').config();
+
 // Load local libraries.
 var env      = require('./config/environment'),
     mongoose = require('./config/database'),
@@ -18,9 +21,6 @@ var env      = require('./config/environment'),
 
 //require config/passport.js (Roy)
 require('./config/passport');
-
-// Load the Env Vars (Roy)
-require('dotenv').config();
 
 // Instantiate a server application.
 var app = express();
@@ -51,7 +51,7 @@ app.use(session({
   saveUninitialized: true
 }));
 
-// Mounting Passport
+// Mounting Passport (Roy)
 app.use(passport.initialize());
 app.use(passport.session());
 

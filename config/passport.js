@@ -1,7 +1,7 @@
 var passport = require('passport');
 
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
-//Need access to our User Model
+//Need access to our User Model (Roy)
 var User = require('../models/user');
 
 
@@ -30,3 +30,25 @@ passport.use(new GoogleStrategy({
     });
   }
 ));
+
+//serializeUser method to give Passport the data
+//to put into the session for this authenticated user
+passport.serializeUser(function(user, done){
+  done(null, user.id);
+});
+
+//deserializeUser method to give Passport the user
+//from the database we want assigned to the req.user object
+passport.deserializeUser(function(id, done){
+  User.findById(id, function(err, user){
+    done(err, user);
+  });
+});
+
+
+
+
+
+
+
+

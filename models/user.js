@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 var userSchema = new mongoose.Schema({
   name:   String,
-  //Changed 'handle' to email
+  //Changed 'handle' to email (Roy)
   email: String,
   //Creating field for Google ID (Roy)
   googleId: String
