@@ -132,7 +132,7 @@ function redraw() {
   context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
   //context.strokeStyle = "#df4b26";
-  //context.lineJoin = "round";
+  context.lineJoin = "round";
   //context.lineWidth = 1;
 
   for(var i = 0; i < clickX.length; i++) {
@@ -154,10 +154,10 @@ function redraw() {
       context.moveTo(clickX[i], clickY[i]);
     }
       context.lineTo(clickX[i], clickY[i]);
-      // context.closePath();
       context.strokeStyle = clickColor[i];
       context.lineWidth = clickSize[i];
       context.stroke();
+      context.closePath();
     }
    }
   }
@@ -273,7 +273,15 @@ $('button#circle').on('click', function() {
 
 //Clear
 function clear(){
-    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+  clickX = [];
+  clickY = [];
+  clickDrag= [];
+  clickColor = [];
+  clickSize = [];
+  clickShape = [];
+  userDraw;
+  redraw();
+  // context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 }
 
 //Clear button
