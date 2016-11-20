@@ -139,8 +139,14 @@ function redraw() {
     curShape = clickShape[i];
     context.beginPath();
     if(curShape === "triangle") {
-        drawtriangle(i);
-    } else{
+        drawTriangle(i);
+    } else if(curShape === "square") {
+        drawSquare(i);
+    } else if(curShape === "circle") {
+        drawCircle(i);
+      }
+     else{
+
 
     if(clickDrag[i] && i) {
       context.moveTo(clickX[i-1], clickY[i-1]);
@@ -222,7 +228,7 @@ $('button#pencil').on('click', function() {
 var clickShape = [];
 var curShape = "line"
 
-function drawtriangle (i) {
+function drawTriangle (i) {
       context.moveTo(clickX[i], clickY[i]);
       context.lineTo(clickX[i]+25, clickY[i]+25);
       context.lineTo(clickX[i]+25, clickY[i]-25);
@@ -230,16 +236,47 @@ function drawtriangle (i) {
       context.fill();
 };
 
+function drawSquare (i) {
+      context.moveTo(clickX[i], clickY[i]);
+      context.lineTo(clickX[i]+25, clickY[i]);
+      context.lineTo(clickX[i]+25, clickY[i]+25);
+      context.lineTo(clickX[i], clickY[i]+25);
+      context.closePath();
+      context.fillStyle = clickColor[i];
+      context.fill();
+};
+
+
+function drawCircle (i) {
+  context.arc(clickX[i], clickY[i], 25, 0, 2*Math.PI);
+  context.fillStyle = clickColor[i];
+  context.fill();
+};
 
 //Shape buttons
 $('button#triangle').on('click', function() {
   curShape = "triangle";
-})
+});
 
 $('button#line').on('click', function() {
   curShape = "line";
-})
+});
+
+$('button#square').on('click', function() {
+  curShape = "square";
+});
+
+$('button#circle').on('click', function() {
+  curShape = "circle";
+});
 
 
+//Clear
+function clear(){
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+}
 
-})
+//Clear button
+$('button#clear').on('click', clear);
+
+});
