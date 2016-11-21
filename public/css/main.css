@@ -71,6 +71,19 @@ h1 {
 
 }
 
+#messages {
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border: 1px solid #666;
+  margin: 40px;
+  display: inline-block;
+  position: relative;
+  width: 200px;
+  height: auto;
+  background-color: lightyellow;
+}
+
 /* Pattern styles */
 .container {
   display: table;

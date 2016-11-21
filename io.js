@@ -20,8 +20,11 @@ io.on('connection', function(socket) {
     io.emit('draw_line', { line: data.line} );
   });
 
-  io.on('connection', function (socket) {
-   console.log('Client connected to socket.io!')
+
+
+
+
+
     socket.on('add-message', function (data) {
       // console.log('datauhiuhiuh', data),
       io.emit('add-message', data);
@@ -30,7 +33,7 @@ io.on('connection', function(socket) {
     });
 
 });
-});
+
 
 
 
