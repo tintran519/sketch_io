@@ -67,12 +67,14 @@
 //========================
 // Alternative Draw code
 
-document.addEventListener("DOMContentLoaded", function() {
+ document.addEventListener("DOMContentLoaded", function() {
 console.log('ready');
 
 //Socket Implementation
 var socket = io();
 console.log(socket);
+
+
 
 var boardDiv = document.getElementById('boardDiv');
 canvas = document.createElement('canvas');
@@ -92,22 +94,38 @@ $('#canvas').mousedown(function(e) {
 
   userDraw = true;
   addClick(mouseX, mouseY);
-  redraw();
+  socket.emit('drawn_line', drawData);
+    console.log(drawData);
+  socket.on('drawn_line', function(data){
+    console.log(data);
+    redraw(data);
+  })
 })
 
 $('#canvas').mousemove(function(e) {
+  socket.on('end_line', function (data) {
+    userDraw = data.userDraw;
+  })
   if (userDraw) {
     addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
-    redraw();
+    socket.emit('drawn_line', drawData);
+      console.log(drawData);
+    socket.on('receive', function(sDrawData){
+      console.log(sDrawData);
+      redraw(sDrawData);
+    })
   }
 });
 
 $('#canvas').mouseup(function(e) {
   userDraw = false;
+  socket.emit('end-line', {userDraw: false})
 });
 
 $('#canvas').mouseleave(function(e) {
   userDraw = false;
+  socket.emit('end-line', {userDraw: false})
+
 })
 
 // function that will save click position
@@ -133,7 +151,8 @@ function addClick(x, y, dragging) {
 
 // function that clears canvas is everything redrawn
 
-function redraw() {
+function redraw(data) {
+  console.log('this is redraw function',data);
   //clear canvas to allow next set of drawing parameters
   context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
@@ -141,12 +160,12 @@ function redraw() {
   context.lineJoin = "round";
   //context.lineWidth = 1;
 
-  for(var i = 0; i < clickX.length; i++) {
-    curShape = clickShape[i];
-    Fill = clickFill[i];
+  for(var i = 0; i < data.x.length; i++) {
+    curShape = data.shape[i];
+    Fill = data.fill[i];
     context.beginPath();
     if(curShape === "triangle") {
-        drawTriangle(i);
+        drawTriangle(data.x,data.y,i);
     } else if(curShape === "square") {
         drawSquare(i);
     } else if(curShape === "circle") {
@@ -155,20 +174,57 @@ function redraw() {
      else{
 
 
-    if(clickDrag[i] && i) {
-      context.moveTo(clickX[i-1], clickY[i-1]);
+    if(data.drag[i] && i) {
+      context.moveTo(data.x[i-1], data.y[i-1]);
     } else {
-      context.moveTo(clickX[i], clickY[i]);
+      context.moveTo(data.x[i], data.y[i]);
     }
-      context.lineTo(clickX[i], clickY[i]);
-      context.strokeStyle = clickColor[i];
-      context.lineWidth = clickSize[i];
+      context.lineTo(data.x[i], data.y[i]);
+      context.strokeStyle = data.color[i];
+      context.lineWidth = data.size[i];
       context.stroke();
       context.closePath();
     }
    }
   }
 
+//======================
+// function redraw() {
+//   //clear canvas to allow next set of drawing parameters
+//   context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+
+//   //context.strokeStyle = "#df4b26";
+//   context.lineJoin = "round";
+//   //context.lineWidth = 1;
+
+//   for(var i = 0; i < clickX.length; i++) {
+//     curShape = clickShape[i];
+//     Fill = clickFill[i];
+//     context.beginPath();
+//     if(curShape === "triangle") {
+//         drawTriangle(i);
+//     } else if(curShape === "square") {
+//         drawSquare(i);
+//     } else if(curShape === "circle") {
+//         drawCircle(i);
+//       }
+//      else{
+
+
+//     if(clickDrag[i] && i) {
+//       context.moveTo(clickX[i-1], clickY[i-1]);
+//     } else {
+//       context.moveTo(clickX[i], clickY[i]);
+//     }
+//       context.lineTo(clickX[i], clickY[i]);
+//       context.strokeStyle = clickColor[i];
+//       context.lineWidth = clickSize[i];
+//       context.stroke();
+//       context.closePath();
+//     }
+//    }
+//   }
+//=============
 
 //Color Palette
 var colorBlue = "#0000ff";
@@ -235,10 +291,10 @@ $('button#pencil').on('click', function() {
 var clickShape = [];
 var curShape = "line"
 
-function drawTriangle (i) {
-      context.moveTo(clickX[i], clickY[i]);
-      context.lineTo(clickX[i]+25, clickY[i]+25);
-      context.lineTo(clickX[i]+25, clickY[i]-25);
+function drawTriangle (x,y,i) {
+      context.moveTo(x[i], y[i]);
+      context.lineTo(x[i]+25, y[i]+25);
+      context.lineTo(x[i]+25, y[i]-25);
       context.closePath();
       if (Fill) {
         context.fillStyle = clickColor[i];
@@ -323,21 +379,23 @@ $('button#clear').on('click', clear);
 
 //Socket
 //var sessionId = io.socket.sessionid;
-  drawData = {
+drawData = {
   x: clickX,
   y: clickY,
   drag: clickDrag,
   userDraw: userDraw,
   color: clickColor,
   shape: clickShape,
+  fill: clickFill,
   size: clickSize
 };
 
-socket.emit('drawn_line', drawData);
-console.log(drawData);
+// socket.emit('drawn_line', drawData);
+// console.log(drawData);
+
 
 // socket.on('drawn_line', function(data) {
 
 // })
 
-});
+ });
