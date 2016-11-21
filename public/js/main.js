@@ -92,30 +92,38 @@ $('#canvas').mousedown(function(e) {
   var mouseX = e.pageX - this.offsetLeft;
   var mouseY = e.pageY - this.offsetTop;
 
-  userDraw = true;
+  drawData.userDraw = true;
   addClick(mouseX, mouseY);
   socket.emit('drawn_line', drawData);
-    console.log(drawData);
-  socket.on('drawn_line', function(data){
-    console.log(data);
-    redraw(data);
-  })
+  console.log('mousedown sent message',drawData.userDraw);
 })
 
 $('#canvas').mousemove(function(e) {
   socket.on('end_line', function (data) {
-    userDraw = data.userDraw;
+    console.log('checking if userDraw true/false',data.userDraw);
+    drawData.userDraw = data.userDraw;
   })
-  if (userDraw) {
+  if (drawData.userDraw) {
     addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
-    socket.emit('drawn_line', drawData);
-      console.log(drawData);
-    socket.on('receive', function(sDrawData){
-      console.log(sDrawData);
-      redraw(sDrawData);
-    })
+
+    console.log('mousemove sent message', drawData);
   }
 });
+
+setInterval(function () {
+  socket.emit('drawn_line', drawData);
+  truncateDrawData()
+}, 100)
+
+function truncateDrawData () {
+  drawData.x = []
+  drawData.y = []
+  drawData.drag = []
+  drawData.fill = []
+  drawData.shape = []
+  drawData.size = []
+  drawData.color = []
+}
 
 $('#canvas').mouseup(function(e) {
   userDraw = false;
@@ -126,6 +134,11 @@ $('#canvas').mouseleave(function(e) {
   userDraw = false;
   socket.emit('end-line', {userDraw: false})
 
+})
+
+socket.on('receive', function(sDrawData){
+  console.log('mousemove received message',sDrawData);
+  redraw(sDrawData);
 })
 
 // function that will save click position
@@ -146,6 +159,7 @@ function addClick(x, y, dragging) {
   clickSize.push(curSize);
   clickShape.push(curShape);
   clickFill.push(Fill);
+  console.log('here i am', drawData);
 }
 
 
@@ -154,10 +168,10 @@ function addClick(x, y, dragging) {
 function redraw(data) {
   console.log('this is redraw function',data);
   //clear canvas to allow next set of drawing parameters
-  context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+  //context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
   //context.strokeStyle = "#df4b26";
-  context.lineJoin = "round";
+  //context.lineJoin = "round";
   //context.lineWidth = 1;
 
   for(var i = 0; i < data.x.length; i++) {

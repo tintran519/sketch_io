@@ -43,17 +43,17 @@ io.on('connection', function(socket) {
   })
 
   socket.on('drawn_line', function(drawData) {
+    sDrawData.userDraw = drawData.userDraw;
     if(sDrawData.userDraw) {
-    console.log(drawData);
     sDrawData.x.push(...drawData.x);
     sDrawData.y.push(...drawData.y);
     sDrawData.drag.push(...drawData.drag);
-    sDrawData.userDraw = drawData.userDraw;
     sDrawData.color.push(...drawData.color);
     sDrawData.shape.push(...drawData.shape);
     sDrawData.fill.push(...drawData.fill);
     sDrawData.size.push(...drawData.size);
 
+    console.log('this is what server sending', sDrawData);
     io.emit('receive', sDrawData);
   }
   })
