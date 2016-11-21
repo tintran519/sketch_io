@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
   <%- include('../partials/head') %>
@@ -9,4 +9,51 @@
 
   <%- include('../partials/scripts') %>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../partials/head') %>
+    <title>Setch I/O</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+
+   <section class="container">
+    <div class="left-half">
+    <article>
+      <canvas id="board"></canvas>
+
+    </article>
+  </div>
+
+
+   <div class="right-half">
+    <article>
+
+    <h1>CHAT</h1>
+<div id="box">
+    <ul id="messages" ></ul>
+</div>
+
+    <label>Your Name:</label><input id="user-name"><br><br>
+
+
+    <label>Message:</label><textarea id="new-msg"></textarea><br>
+
+
+    <input type="button" id="btn-send-msg" value=" Send Message ">
+
+
+
+
+     </article>
+  </div>
+</section>
+
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script src="/javascripts/app.js"></script>
+    <%- include('../partials/scripts') %>
+  </body>
 </html>
