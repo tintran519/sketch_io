@@ -6,10 +6,21 @@ var bodyParser   = require('body-parser');
 var debug        = require('debug')('app:http');
 var cookieParser = require('cookie-parser');
 
+// Require express-session (Roy)
+var session      = require('express-session');
+// Require passport (Roy)
+var passport     = require('passport');
+
+// Load the Env Vars (Roy)
+require('dotenv').config();
+
 // Load local libraries.
 var env      = require('./config/environment'),
     mongoose = require('./config/database'),
     routes   = require('./config/routes');
+
+//require config/passport.js (Roy)
+require('./config/passport');
 
 // Instantiate a server application.
 var app = express();
@@ -32,6 +43,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser('notsosecretnowareyou'));
+
+// Configure and Mount Session middleware (Roy)
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+
+// Mounting Passport (Roy)
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routing layers: favicon, static assets, dynamic routes, or 404…
 
