@@ -15,3 +15,91 @@ a { color: #00B7FF; }
 #canvas {
   display: block;
 }
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 20px;
+  font: 14px "Lucida Grande";
+}
+
+textarea {
+  width: 200px;
+}
+
+label {
+  display: inline-block;
+  width: 85px;
+
+}
+
+ul{
+     list-style:none;
+
+}
+
+
+section {
+  color: black;
+  text-align: center;
+}
+
+div {
+  height: 100%;
+}
+
+article {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 1.75rem;
+  margin: 0 0 0.75rem 0;
+}
+
+#box {
+  height:500px;
+  width:350px;
+  border: 2px;
+  text-align: center;
+
+}
+
+#messages {
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border: 1px solid #666;
+  margin: 40px;
+  display: inline-block;
+  position: relative;
+  width: 200px;
+  height: auto;
+  background-color: lightyellow;
+}
+
+/* Pattern styles */
+.container {
+  display: table;
+  width: 100%;
+}
+
+.left-half {
+  background-color: pink;
+  position: absolute;
+  left: 0px;
+  width: 50%;
+}
+
+.right-half {
+  background-color: honeydew;
+  position: absolute;
+  right: 0px;
+  width: 50%;
+}
