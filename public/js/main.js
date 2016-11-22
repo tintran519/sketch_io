@@ -2,7 +2,7 @@ console.log('JS loaded!');
 document.addEventListener("DOMContentLoaded", function() {
 
   var socket = io();
-  debugger;
+
   console.log(socket);
 
     //Mouse object to keep track of mouse status
@@ -85,7 +85,15 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   function addMessage(data) {
+    console.log('addMessage')
+
+    //display as Li list
     messages.innerHTML += ['<li><strong>', data.name, ':</strong> ', data.msg + '</li>'].join('');
+    console.log('innerHTML', messages.innerHTML)
   }
 
 });
+
+
+
+

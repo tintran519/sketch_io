@@ -68,20 +68,22 @@ h1 {
   width:350px;
   border: 2px;
   text-align: center;
+  overflow: scroll;
 
 }
 
-#messages {
+#messages li {
   border-radius: 30px;
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
   border: 1px solid #666;
-  margin: 40px;
+  margin: 5px;
   display: inline-block;
   position: relative;
-  width: 200px;
+  width: 300px;
   height: auto;
   background-color: lightyellow;
+  text-align: left;
 }
 
 /* Pattern styles */
