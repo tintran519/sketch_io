@@ -15,36 +15,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
   var canvas = document.getElementById('board');
   var context = canvas.getContext('2d');
-  var width = window.innerWidth;
+  var width = window.innerWidth/2;
   var height = window.innerHeight;
 
+  console.log(width);
   canvas.width = width;
   canvas.height = height;
 
-
-  //Mouse event handlers
-  canvas.onmousedown = function(e) {
-    mouse.click = true;
-  }
-
-  canvas.onmouseup = function(e) {
-    mouse.click = false;
-  }
-
-  canvas.onmousemove = function(e) {
-    //normalize mouse position to range 0.0 - 1.0 to allow screen adaptiblity
-    mouse.pos.x = e.clientX / width;
-    mouse.pos.y = e.clientY / height;
-    mouse.move = true;
-  };
-
-var canvas = document.getElementById('board');
-var context = canvas.getContext('2d');
-var width = window.innerWidth;
-var height = window.innerHeight;
-
-canvas.width = width;
-canvas.height = height;
 
 //Mouse event handlers
 canvas.onmousedown = function(e) {
@@ -88,7 +65,34 @@ socket.on('draw_line', function (data) {
 
   mainLoop();
 
+//Default Color
+curColor = colorBlack;
 
+// //Color Palette
+var colorBlue = "#0000ff";
+var colorRed = "#ff0000";
+var colorYellow = "#ffff00";
+var colorBlack = "#000000";
+var colorWhite = "#ffffff"
+
+//Color Toggle
+$('button#blue').on('click',function(){
+  curColor = colorBlue;
+})
+
+$('button#red').on('click',function(){
+  curColor = colorRed;
+})
+
+$('button#yellow').on('click',function(){
+  curColor = colorYellow;
+})
+
+$('button#black').on('click',function(){
+  curColor = colorBlack;
+})
+
+//=============================================
   //chatio
 
   var messages = document.getElementById('messages');
@@ -119,32 +123,6 @@ socket.on('draw_line', function (data) {
 
 });
 
-//Default Color
-curColor = colorBlack;
-
-// //Color Palette
-var colorBlue = "#0000ff";
-var colorRed = "#ff0000";
-var colorYellow = "#ffff00";
-var colorBlack = "#000000";
-var colorWhite = "#ffffff"
-
-//Color Toggle
-$('button#blue').on('click',function(){
-  curColor = colorBlue;
-})
-
-$('button#red').on('click',function(){
-  curColor = colorRed;
-})
-
-$('button#yellow').on('click',function(){
-  curColor = colorYellow;
-})
-
-$('button#black').on('click',function(){
-  curColor = colorBlack;
-})
 
 //========================
 // Alternative Draw code
