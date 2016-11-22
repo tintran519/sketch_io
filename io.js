@@ -19,6 +19,19 @@ io.on('connection', function(socket) {
     // send line to all clients
     io.emit('draw_line', { line: data.line} );
   });
+
+
+
+
+
+
+    socket.on('add-message', function (data) {
+      // console.log('datauhiuhiuh', data),
+      io.emit('add-message', data);
+
+      // io.emit('add-message','hello world');
+    });
+
 });
 
 //=====================
@@ -60,6 +73,9 @@ io.on('connection', function(socket) {
 
 
 // });
+
+
+
 
 
 
