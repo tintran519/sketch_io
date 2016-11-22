@@ -6,7 +6,6 @@
     <link rel="icon" type="image/png" href="/favicon-pencil.ico">
 </head>
 <body>
-
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -25,10 +24,38 @@
 
             <div class="container" id="topLayer">
                 <div class="row">
-                    <div class="col-sm-6">
-                    <canvas id="board"></canvas>
-                    </div>
-                    <div class="col-sm-6 right-half">
+                    <div class="col-sm-8" id="drawBoard">
+	                    <canvas id="board"></canvas>
+	                    <div class="footer">
+	                    	<div class="slide">
+	                    		<span id="clear">
+	                    	   <button id="clear">Clear Board</button>
+	                    	  </span><br><br>
+	                    		<span id="colors">Color
+			                      <button id="black">Black</button>
+			                      <button id="blue">Blue</button>
+			                      <button id="red">Red</button>
+			                      <button id="yellow">Yellow</button>
+		                      </span><br><br>
+		                      <span id="sizes">Size
+		                        <button id="small">Small</button>
+		                        <button id="normal">Normal</button>
+		                        <button id="large">Large</button>
+		                      </span><br><br>
+		                      <span id="shapes">Shape
+		                        <button id="fill">Solid</button>
+		                        <button id="outline">Outline</button>
+		                        <button id="line">Line</button>
+		                        <button id="triangle">Triangle</button>
+		                        <button id="square">Square</button>
+		                        <button id="circle">Circle</button>
+		                      </span><br><br>
+                    		</div>
+                    		Artist Tools
+                    	</div>
+                    	</div>
+
+                    <div class="col-sm-4 right-half">
                         <div id="box">
                             <ul id="messages" ></ul>
                         </div>
