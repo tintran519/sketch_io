@@ -1,7 +1,7 @@
 console.log('JS loaded!');
+var socket = io();
 document.addEventListener("DOMContentLoaded", function() {
 
-  var socket = io();
 
   console.log(socket);
 
@@ -23,32 +23,32 @@ document.addEventListener("DOMContentLoaded", function() {
   canvas.height = height;
 
 
-//Mouse event handlers
-canvas.onmousedown = function(e) {
-  mouse.click = true;
-}
+  //Mouse event handlers
+  canvas.onmousedown = function(e) {
+    mouse.click = true;
+  }
 
-canvas.onmouseup = function(e) {
-  mouse.click = false;
-}
+  canvas.onmouseup = function(e) {
+    mouse.click = false;
+  }
 
-canvas.onmousemove = function(e) {
-  //normalize mouse position to range 0.0 - 1.0 to allow screen adaptiblity
-  mouse.pos.x = e.clientX / width;
-  mouse.pos.y = e.clientY / height;
-  mouse.move = true;
-};
+  canvas.onmousemove = function(e) {
+    //normalize mouse position to range 0.0 - 1.0 to allow screen adaptiblity
+    mouse.pos.x = e.clientX / width;
+    mouse.pos.y = e.clientY / height;
+    mouse.move = true;
+  };
 
-//draw line client is listening for from server
-socket.on('draw_line', function (data) {
-  var line = data.line;
-  context.beginPath();
-  context.lineWidth = 1;
-  context.strokeStyle = curColor;
-  context.moveTo(line[0].x * width, line[0].y * height);
-  context.lineTo(line[1].x * width, line[1].y * height);
-  context.stroke();
-});
+  //draw line client is listening for from server
+  socket.on('draw_line', function (data) {
+    var line = data.line;
+    context.beginPath();
+    context.lineWidth = 1;
+    context.strokeStyle = curColor;
+    context.moveTo(line[0].x * width, line[0].y * height);
+    context.lineTo(line[1].x * width, line[1].y * height);
+    context.stroke();
+  });
 
   //main loop, running every 25ms
   function mainLoop() {
@@ -91,35 +91,6 @@ $('button#yellow').on('click',function(){
 $('button#black').on('click',function(){
   curColor = colorBlack;
 })
-
-//=============================================
-  //chatio
-
-  var messages = document.getElementById('messages');
-  var newMsg = document.getElementById('new-msg');
-  var userName = document.getElementById('user-name');
-
-  socket.on('add-message', function (data) {
-
-    console.log('data',data)
-    addMessage(data);
-  });
-
-  document.getElementById('btn-send-msg').addEventListener('click', function() {
-    socket.emit('add-message', {
-      name: userName.value,
-      msg: newMsg.value
-    });
-    newMsg.value = '';
-  });
-
-  function addMessage(data) {
-    console.log('addMessage')
-
-    //display as Li list
-    messages.innerHTML += ['<li><strong>', data.name, ':</strong> ', data.msg + '</li>'].join('');
-    console.log('innerHTML', messages.innerHTML)
-  }
 
 });
 
