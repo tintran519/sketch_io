@@ -17,7 +17,7 @@ io.on('connection', function(socket) {
     // add received line to history
     line_history.push(data.line);
     // send line to all clients
-    io.emit('draw_line', { line: data.line} );
+    io.emit('draw_line', { line: data.line, color: data.color} );
   });
 
 

@@ -32,6 +32,38 @@ a { color: #00B7FF; }
 #drawBoard {
   border: 2px solid red;
 }
+
+.slide {
+  color: black;
+  background-color: royalblue;
+  border:1px solid black;
+  height:120px;
+  left: 0px;
+  right:0px;
+  bottom: 25px;
+  display: none;
+  position: absolute;
+  overflow-y: scroll;
+}
+
+.footer {
+   color: white;
+   position:absolute;
+   bottom: 0px;
+   height:25px;
+   width: 100%;
+   left: opx;
+   right: 0px;
+   border:1px solid black;
+   display: inline-block;
+   cursor:pointer;
+   background:teal;
+    }
+
+/*#colors, #sizes, #shapes {
+  display: inline-block;
+}*/
+
 /*#canvas {
   display: block;
 }

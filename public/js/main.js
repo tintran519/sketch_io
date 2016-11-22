@@ -19,9 +19,8 @@ document.addEventListener("DOMContentLoaded", function() {
   var height = window.innerHeight;
 
   console.log(width);
-  canvas.width = width;
-  canvas.height = height - 52;
-
+  canvas.width = 690;
+  canvas.height = 690;
 
   //Mouse event handlers
   canvas.onmousedown = function(e) {
@@ -33,11 +32,14 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   canvas.onmousemove = function(e) {
+    var rect = canvas.getBoundingClientRect();
     //normalize mouse position to range 0.0 - 1.0 to allow screen adaptiblity
-    // mouse.pos.x = e.clientX - this.offsetLeft;
-    // mouse.pos.y = e.clientY - this.offsetTop;
-    mouse.pos.x = e.clientX / width;
-    mouse.pos.y = e.clientY / height;
+    mouse.pos.x = Math.floor((e.clientX-rect.left)/(rect.right-rect.left)*canvas.width);
+    mouse.pos.y = Math.floor((e.clientY-rect.top)/(rect.bottom-rect.top)*canvas.height);
+    // mouse.pos.x = e.pageX - this.offsetLeft;
+    // mouse.pos.y = e.pageY - this.offsetTop;
+    // mouse.pos.x = e.clientX / width;
+    // mouse.pos.y = e.clientY / height;
     mouse.move = true;
   };
 
@@ -46,9 +48,11 @@ document.addEventListener("DOMContentLoaded", function() {
     var line = data.line;
     context.beginPath();
     context.lineWidth = 1;
-    context.strokeStyle = curColor;
-    context.moveTo(line[0].x * width, line[0].y * height);
-    context.lineTo(line[1].x * width, line[1].y * height);
+    context.strokeStyle = data.color;
+    context.moveTo(line[0].x, line[0].y);
+    context.lineTo(line[1].x, line[1].y);
+    // context.moveTo(line[0].x * width, line[0].y * height);
+    // context.lineTo(line[1].x * width, line[1].y * height);
     context.stroke();
   });
 
@@ -57,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //checks if user is drawing
     if (mouse.click && mouse.move && mouse.pos_prev) {
       //send line to the server
-      socket.emit('draw_line', { line: [ mouse.pos, mouse.pos_prev] });
+      socket.emit('draw_line', { line: [ mouse.pos, mouse.pos_prev], color: curColor });
       mouse.move = false;
     }
 
@@ -67,15 +71,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
   mainLoop();
 
-//Default Color
-curColor = colorBlack;
-
 // //Color Palette
 var colorBlue = "#0000ff";
 var colorRed = "#ff0000";
 var colorYellow = "#ffff00";
 var colorBlack = "#000000";
 var colorWhite = "#ffffff"
+
+//Default Color
+curColor = colorBlack;
+
 
 //Color Toggle
 $('button#blue').on('click',function(){
@@ -93,6 +98,25 @@ $('button#yellow').on('click',function(){
 $('button#black').on('click',function(){
   curColor = colorBlack;
 })
+
+//Clear
+function clear(){
+  context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+};
+
+//Clear button
+$('button#clear').on('click', clear);
+
+
+
+
+//Sliding footer
+$(".footer").hover(function () {
+  $(".slide").slideToggle("fast");
+});
+
+
+
 
 });
 
