@@ -57,5 +57,4 @@ router.get('/api', function(req, res, next){
   res.json({ message: "Sending JSON!"});
 });
 
-
 module.exports = router;
