@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
       context.lineTo(line[1].x + 25, line[1].y + 25);
       context.lineTo(line[1].x + 25, line[1].y - 25);
       context.closePath();
-      if (Fill) {
+      if (data.fill) {
         context.fillStyle = data.color;
         context.fill();
       } else {
@@ -84,7 +84,13 @@ document.addEventListener("DOMContentLoaded", function() {
     //checks if user is drawing
     if (mouse.click && mouse.move && mouse.pos_prev) {
       //send line to the server
-      socket.emit('draw_line', { line: [ mouse.pos, mouse.pos_prev], color: curColor, size: curSize, shape: curShape });
+      socket.emit('draw_line', {
+        line: [ mouse.pos, mouse.pos_prev],
+        color: curColor,
+        size: curSize,
+        shape: curShape,
+        fill: Fill
+      });
       mouse.move = false;
     }
 
@@ -186,7 +192,7 @@ function drawCircle (i) {
 };
 
 //Solid or Outline
-var Fill = false;
+  Fill = false;
 
 $('button#fill').on('click', function(){
   Fill = true;
