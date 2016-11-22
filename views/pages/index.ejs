@@ -1,78 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<%- include('../partials/head') %>
-	<title>Sketch I/O</title>
-	<link rel="icon" type="image/png" href="/favicon-pencil.ico">
+    <%- include('../partials/head') %>
+    <title>Sketch I/O</title>
+    <link rel="icon" type="image/png" href="/favicon-pencil.ico">
 </head>
 <body>
-	<style>
-		div {
-			border: 1px solid red;
-		}
-	</style>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#"><i class="fa fa-pencil fa-6" aria-hidden="true"></i> Sketch I/O</a>
-			</div>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="#"><i class="fa fa-home fa-fw" aria-hidden="true"></i>Home</a></li>
-				<% if (user) { %>
-					<li><a href="/logout" class="logo">Logout</a></li>
-					<% } else { %>
-						<li><a href="/auth/google" class="btn btn-block btn-social btn-google"><span class="fa fa-google"></span>  Login with Google</a></li>
-						<% } %>
-					</ul>
-				</div>
-			</nav>
->>>>>>> ee33e80837a3976110dc67bd212dcb30daa82878
 
-			<div class="container" id="topLayer">
-				<div class="row">
-					<div class="col-sm-6">
-					<canvas id="board"></canvas>
-					</div>
-					<div class="col-sm-6">
-						<div id="box">
-							<ul id="messages" ></ul>
-						</div>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"><i class="fa fa-pencil fa-6" aria-hidden="true"></i> Sketch I/O</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="#"><i class="fa fa-home fa-fw" aria-hidden="true"></i>Home</a></li>
+                <% if (user) { %>
+                    <li><a href="/logout" class="logo">Logout</a></li>
+                    <% } else { %>
+                        <li><a href="/auth/google" class="btn btn-block btn-social btn-google"><span class="fa fa-google"></span>  Login with Google</a></li>
+                        <% } %>
+                    </ul>
+                </div>
+            </nav>
 
-						<label>Your Name:</label><input id="user-name"><br><br>
-						<label>Message:</label><textarea id="new-msg"></textarea><br>
-						<input type="button" id="btn-send-msg" value=" Send Message ">
-					</div>
-				</div>
-			</div>
-		</div>
+            <div class="container" id="topLayer">
+                <div class="row">
+                    <div class="col-sm-6">
+                    <canvas id="board"></canvas>
+                    </div>
+                    <div class="col-sm-6 right-half">
+                        <div id="box">
+                            <ul id="messages" ></ul>
+                        </div>
 
+                        <label>Your Name:</label><input id="user-name"><br><br>
+                        <label>Message:</label><textarea id="new-msg"></textarea><br>
+                        <input type="button" id="btn-send-msg" value=" Send Message ">
+                    </div>
+                </div>
+            </div>
+        </div>
 
-
-
-
-
-
-
-
-
-<<<<<<< HEAD
-
-
-    <%- include('../partials/scripts') %>
-  </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-=======
-		<%- include('../partials/scripts') %>
-	</body>
-	</html>
->>>>>>> ee33e80837a3976110dc67bd212dcb30daa82878
+        <%- include('../partials/scripts') %>
+    </body>
+    </html>

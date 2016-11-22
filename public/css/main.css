@@ -37,24 +37,3 @@ a { color: #00B7FF; }
   width: 1005px;
   height: 1005px;
 }*/
-
-.left-half {
-  background-color: pink;
-  position: absolute;
-  left: 0px;
-  width: 65%;
-}
-
-.right-half {
-  background-color: honeydew;
-  position: absolute;
-  right: 0px;
-  width: 35%;
-}
-
-
-/*
-.btn-google {
-  background-color: white;
-
-}*/
