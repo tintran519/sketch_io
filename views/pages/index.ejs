@@ -6,11 +6,6 @@
 	<link rel="icon" type="image/png" href="/favicon-pencil.ico">
 </head>
 <body>
-	<style>
-		div {
-			border: 1px solid red;
-		}
-	</style>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -29,10 +24,16 @@
 
 			<div class="container" id="topLayer">
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-8" id="drawBoard">
 					<canvas id="board"></canvas>
+						<div id="colors">Color
+						  <button id="black">Black</button>
+						  <button id="blue">Blue</button>
+						  <button id="red">Red</button>
+						  <button id="yellow">Yellow</button>
+						</div>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-sm-4">
 						<div id="box">
 							<ul id="messages" ></ul>
 						</div>

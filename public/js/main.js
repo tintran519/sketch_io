@@ -15,12 +15,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
   var canvas = document.getElementById('board');
   var context = canvas.getContext('2d');
-  var width = window.innerWidth/2;
+  var width = window.innerWidth;
   var height = window.innerHeight;
 
   console.log(width);
   canvas.width = width;
-  canvas.height = height;
+  canvas.height = height - 52;
 
 
   //Mouse event handlers
@@ -34,6 +34,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
   canvas.onmousemove = function(e) {
     //normalize mouse position to range 0.0 - 1.0 to allow screen adaptiblity
+    // mouse.pos.x = e.clientX - this.offsetLeft;
+    // mouse.pos.y = e.clientY - this.offsetTop;
     mouse.pos.x = e.clientX / width;
     mouse.pos.y = e.clientY / height;
     mouse.move = true;
