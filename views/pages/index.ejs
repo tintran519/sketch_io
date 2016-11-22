@@ -1,60 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<%- include('../partials/head') %>
-	<title>Sketch I/O</title>
-	<link rel="icon" type="image/png" href="/favicon-pencil.ico">
+    <%- include('../partials/head') %>
+    <title>Sketch I/O</title>
+    <link rel="icon" type="image/png" href="/favicon-pencil.ico">
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#"><i class="fa fa-pencil fa-6" aria-hidden="true"></i> Sketch I/O</a>
-			</div>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="#"><i class="fa fa-home fa-fw" aria-hidden="true"></i>Home</a></li>
-				<% if (user) { %>
-					<li><a href="/logout" class="logo">Logout</a></li>
-					<% } else { %>
-						<li><a href="/auth/google" class="btn btn-block btn-social btn-google"><span class="fa fa-google"></span>  Login with Google</a></li>
-						<% } %>
-					</ul>
-				</div>
-			</nav>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"><i class="fa fa-pencil fa-6" aria-hidden="true"></i> Sketch I/O</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="#"><i class="fa fa-home fa-fw" aria-hidden="true"></i>Home</a></li>
+                <% if (user) { %>
+                    <li><a href="/logout" class="logo">Logout</a></li>
+                    <% } else { %>
+                        <li><a href="/auth/google" class="btn btn-block btn-social btn-google"><span class="fa fa-google"></span>  Login with Google</a></li>
+                        <% } %>
+                    </ul>
+                </div>
+            </nav>
 
-			<div class="container" id="topLayer">
-				<div class="row">
-					<div class="col-sm-8" id="drawBoard">
-					<canvas id="board"></canvas>
-						<div id="colors">Color
-						  <button id="black">Black</button>
-						  <button id="blue">Blue</button>
-						  <button id="red">Red</button>
-						  <button id="yellow">Yellow</button>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div id="box">
-							<ul id="messages" ></ul>
-						</div>
+            <div class="container" id="topLayer">
+                <div class="row">
+                    <div class="col-sm-8" id="drawBoard">
+	                    <canvas id="board"></canvas>
+		                    <div id="colors">Color
+		                      <button id="black">Black</button>
+		                      <button id="blue">Blue</button>
+		                      <button id="red">Red</button>
+		                      <button id="yellow">Yellow</button>
+		                    </div>
+                    </div>
+                    <div class="col-sm-4 right-half">
+                        <div id="box">
+                            <ul id="messages" ></ul>
+                        </div>
 
-						<label>Your Name:</label><input id="user-name"><br><br>
-						<label>Message:</label><textarea id="new-msg"></textarea><br>
-						<input type="button" id="btn-send-msg" value=" Send Message ">
-					</div>
-				</div>
-			</div>
-		</div>
+                        <label>Your Name:</label><input id="user-name"><br><br>
+                        <label>Message:</label><textarea id="new-msg"></textarea><br>
+                        <input type="button" id="btn-send-msg" value=" Send Message ">
+                    </div>
+                </div>
+            </div>
+        </div>
 
-
-
-
-
-
-
-
-
-
-		<%- include('../partials/scripts') %>
-	</body>
-	</html>
+        <%- include('../partials/scripts') %>
+    </body>
+    </html>
