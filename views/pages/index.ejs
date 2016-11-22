@@ -1,32 +1,26 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-  <%- include('../partials/head') %>
-  <a href="" class="brand-logo left">Sketch It/Out!</a>
-  <ul class="right">
-    <% if (user) { %>
-    <li><a href="/logout"><i class="material-icons left">trending_flat</i>Logout</a></li>
-    <% } else { %>
-    <li><a href="/auth/google"><i class="material-icons left">vpn_key</i>Login with Google</a></li>
-    <% } %>
-  </ul>
-</head>
-<body>
-  <canvas id="board"></canvas>
-
-
-  <%- include('../partials/scripts') %>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html>
   <head>
     <%- include('../partials/head') %>
-    <title>Setch I/O</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Sketch I/O</title>
+    <link rel="icon" type="image/png" href="/favicon-pencil.ico">
   </head>
   <body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"><i class="fa fa-pencil fa-6" aria-hidden="true"></i> Sketch I/O</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="active"><a href="#"><i class="fa fa-home fa-fw" aria-hidden="true"></i>Home</a></li>
+          <% if (user) { %>
+    <li><a href="/logout" class="logo">Logout</a></li>
+    <% } else { %>
+    <li><a href="/auth/google" class="btn btn-block btn-social btn-google"><span class="fa fa-google"></span>  Login with Google</a></li>
+    <% } %>
+    </ul>
+  </div>
+</nav>
 
    <section class="container">
     <div class="left-half">
@@ -40,7 +34,6 @@
    <div class="right-half">
     <article>
 
-    <h1>CHAT</h1>
 <div id="box">
     <ul id="messages" ></ul>
 </div>
