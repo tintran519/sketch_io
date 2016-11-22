@@ -45,12 +45,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
   //draw line client is listening for from server
   socket.on('draw_line', function (data) {
-    var line = data.line;
     switch(data.shape) {
       case "triangle":
         drawTriangle(data);
         break;
       case "line":
+        var line = data.line;
         context.beginPath();
         context.lineWidth = data.size;
         context.strokeStyle = data.color;
@@ -60,24 +60,15 @@ document.addEventListener("DOMContentLoaded", function() {
         // context.lineTo(line[1].x * width, line[1].y * height);
         context.stroke();
         break;
+      case "square":
+        drawSquare(data);
+        break;
+      case "circle":
+        drawCircle(data);
+        break;
     }
   });
 
-  function drawTriangle (data) {
-      var line = data.line;
-      context.beginPath();
-      context.moveTo(line[0].x, line[0].y);
-      context.lineTo(line[1].x + 25, line[1].y + 25);
-      context.lineTo(line[1].x + 25, line[1].y - 25);
-      context.closePath();
-      if (data.fill) {
-        context.fillStyle = data.color;
-        context.fill();
-      } else {
-        context.strokeStyle = data.color;
-        context.stroke();
-    }
-};
 
   //main loop, running every 25ms
   function mainLoop() {
@@ -162,31 +153,52 @@ $('button#large').on('click', function() {
 //Default shape
 curShape = "line"
 
-
-
-function drawSquare (i) {
-      context.moveTo(clickX[i], clickY[i]);
-      context.lineTo(clickX[i]+25, clickY[i]);
-      context.lineTo(clickX[i]+25, clickY[i]+25);
-      context.lineTo(clickX[i], clickY[i]+25);
-      context.closePath();
-      if (Fill) {
-        context.fillStyle = clickColor[i];
-        context.fill();
-      } else {
-        context.strokeStyle = clickColor[i];
-        context.stroke();
-    }
+//Functions that draws shapes
+function drawTriangle (data) {
+    var line = data.line;
+    context.beginPath();
+    context.moveTo(line[0].x, line[0].y);
+    context.lineTo(line[1].x + 25, line[1].y + 25);
+    context.lineTo(line[1].x + 25, line[1].y - 25);
+    context.closePath();
+    if (data.fill) {
+      context.fillStyle = data.color;
+      context.fill();
+    } else {
+      context.strokeStyle = data.color;
+      context.stroke();
+  }
 };
 
 
-function drawCircle (i) {
-  context.arc(clickX[i], clickY[i], 25, 0, 2*Math.PI);
-      if (Fill) {
-        context.fillStyle = clickColor[i];
+function drawSquare (data) {
+    var line = data.line;
+    context.beginPath();
+    context.moveTo(line[0].x, line[0].y);
+    context.lineTo(line[1].x + 25, line[1].y);
+    context.lineTo(line[1].x + 25, line[1].y + 25);
+    context.lineTo(line[1].x, line[1].y + 25);
+    context.closePath();
+    if (data.fill) {
+      context.fillStyle = data.color;
+      context.fill();
+    } else {
+      context.strokeStyle = data.color;
+      context.stroke();
+  }
+};
+
+
+function drawCircle (data) {
+    var line = data.line;
+    context.beginPath();
+    context.arc(line[1].x, line[1].y, 25, 0, 2*Math.PI);
+    context.closePath();
+      if (data.fill) {
+        context.fillStyle = data.color;
         context.fill();
       } else {
-        context.strokeStyle = clickColor[i];
+        context.strokeStyle = data.color;
         context.stroke();
     }
 };
