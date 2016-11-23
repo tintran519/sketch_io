@@ -5,6 +5,7 @@ textarea {
 label {
   display: inline-block;
   width: 85px;
+  margin-bottom: 0auto;
 
 }
 
@@ -29,7 +30,7 @@ h1 {
 }
 
 #box {
-  height:500px;
+  height:600px;
   width:350px;
   border: 2px;
   text-align: center;
@@ -70,11 +71,11 @@ h1 {
  height: 980px;
 }
 
-
-
 html, body {
   height: 100%;
   margin: 0;
+  background-color: honeydew;
+  height: 700px;
 }
 
 input[type=button] {padding:5px 15px; background:green; border:0 none;
@@ -82,4 +83,3 @@ input[type=button] {padding:5px 15px; background:green; border:0 none;
     color: white;
     -webkit-border-radius: 5px;
     border-radius: 5px; }
-

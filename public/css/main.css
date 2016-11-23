@@ -38,7 +38,7 @@ a { color: #00B7FF; }
   color: black;
   background-color: royalblue;
   border:1px solid black;
-  height:120px;
+  height:180px;
   left: 0px;
   right:0px;
   bottom: 25px;
@@ -61,6 +61,10 @@ a { color: #00B7FF; }
    background:teal;
     }
 
+canvas {
+  cursor: url('../pencil.png'), auto;
+  /*cursor: url('http://www.rw-designer.com/oce/res/eraser.png'), auto;*/
+}
 /*#colors, #sizes, #shapes {
   display: inline-block;
 }*/
