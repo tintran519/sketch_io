@@ -1,5 +1,5 @@
-//io.js
-
+//========================================
+//Draw socket
 var io = require('socket.io')();
 var line_history = [];
 
@@ -27,11 +27,8 @@ io.on('connection', function(socket) {
     });
   });
 
-
-
-
-
-
+//==========================================
+//Message socket
     socket.on('add-message', function (data) {
       // console.log('datauhiuhiuh', data),
       io.emit('add-message', data);
@@ -41,50 +38,4 @@ io.on('connection', function(socket) {
 
 });
 
-//=====================
-// var sDrawData = {
-//   x: [],
-//   y: [],
-//   drag: [],
-//   userDraw:'',
-//   color: [],
-//   shape: [],
-//   fill: [],
-//   size: []
-// };
-
-// io.on('connection', function(socket) {
-//   console.log('Client connected to socket.io!');
-//   socket.on('end-line', function(data) {
-//     sDrawData.userDraw = data.userDraw;
-
-//     console.log(data.userDraw);
-//     io.emit('end_line', {userDraw: sDrawData.userDraw})
-//   })
-
-//   socket.on('drawn_line', function(drawData) {
-//     sDrawData.userDraw = drawData.userDraw;
-//     if(sDrawData.userDraw) {
-//     sDrawData.x.push(...drawData.x);
-//     sDrawData.y.push(...drawData.y);
-//     sDrawData.drag.push(...drawData.drag);
-//     sDrawData.color.push(...drawData.color);
-//     sDrawData.shape.push(...drawData.shape);
-//     sDrawData.fill.push(...drawData.fill);
-//     sDrawData.size.push(...drawData.size);
-
-//     console.log('this is what server sending', sDrawData);
-//     io.emit('receive', sDrawData);
-//   }
-//   })
-
-
-// });
-
-
-
-
-
-
-// io represents socket.io on the server
 module.exports = io;
