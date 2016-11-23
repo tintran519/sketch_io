@@ -125,6 +125,7 @@ $('button#green').on('click',function(){
 
 //Clear Board
 function clear(){
+  if(confirm("Clear your canvas?") == true)
   context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 };
 
