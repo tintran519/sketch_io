@@ -59,19 +59,23 @@ h1 {
   width: 100%;
 }
 
-.left-half {
+/*.left-half {
   background-color: pink;
   position: absolute;
   left: 0px;
   width: 50%;
 }
-
+*/
 .right-half {
+ background-color: honeydew;
+ height: 980px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
   background-color: honeydew;
   height: 700px;
-/*  position: absolute;
-  right: 0px;
-  width: 50%;*/
 }
 
 input[type=button] {padding:5px 15px; background:green; border:0 none;
