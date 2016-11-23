@@ -67,15 +67,74 @@ h1 {
 }
 */
 .right-half {
+ text-align: center;
+ height: 100%;
+ width: 30%;
+ position: fixed;
+ z-index: 1;
+ top: 0;
+ right: 0;
  background-color: honeydew;
- height: 980px;
+ /*overflow-x: hidden;*/
+ padding-top: 60px;
+ transition: transform 0.5s;
+ transform:translate(100%,0);
+/* background-color: honeydew;
+ height: 100%;
+ position: absolute;
+ top:0;
+ right:0;
+ text-align:center;
+ border:1px solid black;*/
+}
+
+.right-half.open {
+  transform:translate(0,0);
+}
+
+@media screen and (max-height: 680px) {
+  .right-half {
+    padding-top: 15px;
+  }
 }
 
 html, body {
   height: 100%;
   margin: 0;
-  background-color: honeydew;
-  height: 700px;
+}
+
+.row {
+  position: relative;
+  transition: right 0.5s;
+}
+
+#chat_bubble {
+  width: 50px;
+  position: absolute;
+  right: 100%;
+  top: 55px;
+}
+
+circle {
+  fill: white;
+}
+
+#chat_bubble:hover circle {
+  animation: phase 1s infinite alternate;
+}
+
+#chat_bubble:hover #c2 {
+  -webkit-animation-delay: 0.33s;
+}
+
+#chat_bubble:hover #c3 {
+  -webkit-animation-delay: 0.66s;
+}
+
+@keyframes phase {
+  to {
+  fill: #098cc7;
+  }
 }
 
 input[type=button] {padding:5px 15px; background:green; border:0 none;
