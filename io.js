@@ -22,7 +22,8 @@ io.on('connection', function(socket) {
       color: data.color,
       size: data.size,
       shape: data.shape,
-      fill: data.fill
+      fill: data.fill,
+      tool: data.tool
     });
   });
 

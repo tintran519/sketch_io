@@ -60,6 +60,10 @@ a { color: #00B7FF; }
    background:teal;
     }
 
+canvas {
+  cursor: url('http://www.rw-designer.com/oce/res/pencil.png'), auto;
+  /*cursor: url('http://www.rw-designer.com/oce/res/eraser.png'), auto;*/
+}
 /*#colors, #sizes, #shapes {
   display: inline-block;
 }*/

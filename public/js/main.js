@@ -2,7 +2,6 @@ console.log('JS loaded!');
 var socket = io();
 document.addEventListener("DOMContentLoaded", function() {
 
-
   console.log(socket);
 
     //Mouse object to keep track of mouse status
@@ -31,15 +30,11 @@ document.addEventListener("DOMContentLoaded", function() {
     mouse.click = false;
   }
 
+  //normalize mouse position to range 0.0 - 1.0 to allow screen adaptiblity
   canvas.onmousemove = function(e) {
     var rect = canvas.getBoundingClientRect();
-    //normalize mouse position to range 0.0 - 1.0 to allow screen adaptiblity
     mouse.pos.x = Math.floor((e.clientX-rect.left)/(rect.right-rect.left)*canvas.width);
-    mouse.pos.y = Math.floor((e.clientY-rect.top)/(rect.bottom-rect.top)*canvas.height);
-    // mouse.pos.x = e.pageX - this.offsetLeft;
-    // mouse.pos.y = e.pageY - this.offsetTop;
-    // mouse.pos.x = e.clientX / width;
-    // mouse.pos.y = e.clientY / height;
+    mouse.pos.y = Math.floor((e.clientY-rect.top)/(rect.bottom-rect.top)*canvas.height)+20;
     mouse.move = true;
   };
 
@@ -56,8 +51,6 @@ document.addEventListener("DOMContentLoaded", function() {
         context.strokeStyle = data.color;
         context.moveTo(line[0].x, line[0].y);
         context.lineTo(line[1].x, line[1].y);
-        // context.moveTo(line[0].x * width, line[0].y * height);
-        // context.lineTo(line[1].x * width, line[1].y * height);
         context.stroke();
         break;
       case "square":
@@ -74,13 +67,19 @@ document.addEventListener("DOMContentLoaded", function() {
   function mainLoop() {
     //checks if user is drawing
     if (mouse.click && mouse.move && mouse.pos_prev) {
+      if (curTool === "eraser") {
+        curColor = colorWhite;
+        curShape = "square";
+        Fill = true;
+      }
       //send line to the server
       socket.emit('draw_line', {
         line: [ mouse.pos, mouse.pos_prev],
         color: curColor,
         size: curSize,
         shape: curShape,
-        fill: Fill
+        fill: Fill,
+        tool: curTool
       });
       mouse.move = false;
     }
@@ -97,6 +96,7 @@ var colorRed = "#ff0000";
 var colorYellow = "#ffff00";
 var colorBlack = "#000000";
 var colorWhite = "#ffffff"
+var colorGreen = "#008000";
 
 //Default Color
 curColor = colorBlack;
@@ -119,6 +119,10 @@ $('button#black').on('click',function(){
   curColor = colorBlack;
 })
 
+$('button#green').on('click',function(){
+  curColor = colorGreen;
+})
+
 //Clear Board
 function clear(){
   context.clearRect(0, 0, context.canvas.width, context.canvas.height);
@@ -126,6 +130,23 @@ function clear(){
 
 //Clear button
 $('button#clear').on('click', clear);
+
+//Eraser
+curTool = "pencil";
+
+//Eraser buttons
+$('button#eraser').on('click', function() {
+  curTool = "eraser";
+  canvas.style.cursor = "url('http://www.rw-designer.com/oce/res/eraser.png'), auto";
+});
+
+$('button#pencil').on('click', function() {
+  curTool = "pencil";
+  curColor = colorBlack;
+  curShape = "line";
+  canvas.style.cursor = "url('http://www.rw-designer.com/oce/res/pencil.png'), auto";
+});
+
 
 //Size Selection
 var normal = 3;
@@ -234,10 +255,6 @@ $('button#circle').on('click', function() {
 $(".footer").hover(function () {
   $(".slide").slideToggle("fast");
 });
-
-
-
-
 });
 
 
