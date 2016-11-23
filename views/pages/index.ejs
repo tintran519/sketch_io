@@ -14,9 +14,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="#"><i class="fa fa-home fa-fw" aria-hidden="true"></i>Home</a></li>
                 <% if (user) { %>
-                    <li><a href="/logout" class="logo">Logout</a></li>
+                    <li><a href="/logout" class="logo" id='user-name' value=<%= user.name %>><%= user.name %> Logout</a></li>
                     <% } else { %>
                         <li><a href="/auth/google" class="btn btn-block btn-social btn-google"><span class="fa fa-google"></span>  Login with Google</a></li>
+
                         <% } %>
                     </ul>
                 </div>
@@ -60,9 +61,18 @@
                             <ul id="messages" ></ul>
                         </div>
 
-                        <label>Your Name:</label><input id="user-name"><br><br>
-                        <label>Message:</label><textarea id="new-msg"></textarea><br>
+
+                     <% if (user) { %>
+                    <!-- <label id="user-name" value=<%#= user.name %>><%#= user.name %></label> -->
+                    <label>Message:</label><textarea id="new-msg"></textarea><br>
                         <input type="button" id="btn-send-msg" value=" Send Message ">
+                          <% } else { %>
+                         <% } %>
+
+                       <!--  <label>Your Name:</label><input id="user-name"><br><br> -->
+                     <!--    <label>Message:</label><textarea id="new-msg"></textarea><br>
+                        <input type="button" id="btn-send-msg" value=" Send Message "> -->
+
                     </div>
                 </div>
             </div>
