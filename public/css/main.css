@@ -7,13 +7,17 @@ body {
 
 body {
   font-size: 14px;
-  /*padding: 50px;*/
 }
 
 a { color: #00B7FF; }
 
 #topLayer {
+  height: 100%;
+  width: 100%;
   margin-top: 54px;
+  position: relative;
+  transition: margin-left .5s;
+  /*padding: 16px;*/
 }
 
 #board {
@@ -21,9 +25,6 @@ a { color: #00B7FF; }
   position: absolute;
   top: 0;
   left: 0;
-
- /* height: 500px;
-  width: 500px;*/
 }
 
 .buttons {
@@ -31,7 +32,8 @@ a { color: #00B7FF; }
 }
 
 #drawBoard {
-  border: 2px solid red;
+  /*border: 2px solid red;*/
+  height:100%;
 }
 
 .slide {
@@ -49,7 +51,7 @@ a { color: #00B7FF; }
 
 .footer {
    color: white;
-   position:absolute;
+   position:fixed;
    bottom: 0px;
    height:25px;
    width: 100%;
@@ -63,18 +65,4 @@ a { color: #00B7FF; }
 
 canvas {
   cursor: url('../pencil.png'), auto;
-  /*cursor: url('http://www.rw-designer.com/oce/res/eraser.png'), auto;*/
 }
-/*#colors, #sizes, #shapes {
-  display: inline-block;
-}*/
-
-/*#canvas {
-  display: block;
-}
-
-#boardDiv {
-  border: 2px solid black;
-  width: 1005px;
-  height: 1005px;
-}*/
