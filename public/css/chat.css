@@ -5,6 +5,7 @@ textarea {
 label {
   display: inline-block;
   width: 85px;
+  margin-bottom: 0auto;
 
 }
 
@@ -29,7 +30,7 @@ h1 {
 }
 
 #box {
-  height:500px;
+  height:600px;
   width:350px;
   border: 2px;
   text-align: center;
@@ -66,15 +67,16 @@ h1 {
 }
 */
 .right-half {
- background-color: honeydew;
- height: 980px;
+  background-color: honeydew;
+  height: 980px;
+  /*display: absolute;*/
 }
-
 
 
 html, body {
   height: 100%;
   margin: 0;
+  height: 980px;
 }
 
 input[type=button] {padding:5px 15px; background:green; border:0 none;

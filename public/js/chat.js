@@ -19,9 +19,12 @@ document.getElementById('btn-send-msg').addEventListener('click', function() {
 });
 
 function addMessage(data) {
-  console.log('addMessage')
+  console.log(data)
 
   //display as Li list
-  messages.innerHTML += ['<li><strong>', data.name, ':</strong> ', data.msg + '</li>'].join('');
+  messages.innerHTML += ['<li><strong>',
+$('#user-name').attr('value'), ':</strong> ', data.msg + '</li>'].join('');
   console.log('innerHTML', messages.innerHTML)
 }
+
+
