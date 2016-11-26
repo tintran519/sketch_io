@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   console.log(width);
   canvas.width = $('#drawBoard').width();
-  canvas.height = 690;
+  canvas.height = $('#drawBoard').height();
 
   //Mouse event handlers
   canvas.onmousedown = function(e) {
@@ -257,6 +257,31 @@ $(".footer").on('click',function () {
   $(".slide").slideToggle("slow");
 });
 
+//Toggle Chat
+var toggle = 0
+$("#chat_bubble").on('click', function(event) {
+  event.preventDefault();
+  if (toggle === 1) {
+    //not clicked
+    closeChat();
+    $(this).removeClass('clicked');
+    toggle = 0;
+  } else {
+    //clicked
+    openChat();
+    $(this).addClass('clicked');
+    toggle = 1;
+  }
+})
+//opens chat
+function openChat(){
+  $(".right-half").addClass('open');
+  // $(".row").css('right','33%');
+}
 
+function closeChat(){
+  $(".right-half").removeClass('open');
+  // $(".row").css('right','0%');
+}
 
 });
