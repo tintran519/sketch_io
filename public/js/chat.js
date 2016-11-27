@@ -27,4 +27,28 @@ $('#user-name').attr('value'), ':</strong> ', data.msg + '</li>'].join('');
   console.log('innerHTML', messages.innerHTML)
 }
 
+//Toggle Chat
+var toggle = 0
+$("#chat_bubble").on('click', function(event) {
+  event.preventDefault();
+  if (toggle === 1) {
+    //not clicked
+    closeChat();
+    toggle = 0;
+  } else {
+    //clicked
+    openChat();
+    toggle = 1;
+  }
+})
 
+//opens chat
+function openChat(){
+  $(".right-half").addClass('open');
+  // $(".row").css('right','33%');
+}
+
+function closeChat(){
+  $(".right-half").removeClass('open');
+  // $(".row").css('right','0%');
+}

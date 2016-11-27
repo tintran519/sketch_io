@@ -36,7 +36,7 @@ a { color: #00B7FF; }
   height:100%;
 }
 
-.slide {
+/*.slide {
   color: black;
   background-color: royalblue;
   border:1px solid black;
@@ -47,21 +47,55 @@ a { color: #00B7FF; }
   display: none;
   position: absolute;
   overflow-y: scroll;
+}*/
+
+.slide {
+ border: 1px solid black;
+ text-align: center;
+ height: 43%;
+ width: 100%;
+ position: fixed;
+ z-index: 1;
+ bottom: 0;
+ /*right: 0;*/
+ background-color: #56a0ec;
+ /*overflow-x: hidden;*/
+ padding-top: 60px;
+ transition: transform 0.5s;
+ transform:translate(0,100%);
+/* background-color: honeydew;
+ height: 100%;
+ position: absolute;
+ top:0;
+ right:0;
+ text-align:center;
+ border:1px solid black;*/
+}
+
+.slide.open {
+  transform:translate(0,0);
 }
 
 .footer {
+   text-align: center;
    color: white;
    position:fixed;
    bottom: 0px;
-   height:25px;
+   height:52px;
    width: 100%;
    left: opx;
    right: 0px;
-   border:1px solid black;
+   /*border:1px solid black;*/
    display: inline-block;
-   cursor:pointer;
-   background:teal;
+   /*cursor:pointer;*/
+   /*background:#97cccc;*/
     }
+
+#tool_icon {
+  cursor: pointer;
+  position: absolute;
+  bottom: 100%;
+}
 
 canvas {
   cursor: url('../pencil.png'), auto;
