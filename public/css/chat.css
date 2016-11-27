@@ -56,14 +56,8 @@ h1 {
   width: 100%;
 }
 
-/*.left-half {
-  background-color: pink;
-  position: absolute;
-  left: 0px;
-  width: 50%;
-}
-*/
 .right-half {
+ border: 1px solid black;
  text-align: center;
  height: 100%;
  width: 30%;
@@ -73,25 +67,22 @@ h1 {
  right: 0;
  background-color: honeydew;
  /*overflow-x: hidden;*/
- padding-top: 60px;
+ padding-top: 5px;
  transition: transform 0.5s;
  transform:translate(100%,0);
-/* background-color: honeydew;
- height: 100%;
- position: absolute;
- top:0;
- right:0;
- text-align:center;
- border:1px solid black;*/
 }
 
 .right-half.open {
   transform:translate(0,0);
 }
 
-@media screen and (max-height: 680px) {
-  .right-half {
-    padding-top: 15px;
+@media only screen and (max-width: 767px) {
+  .right-half.open {
+    padding-top: 93px;
+  }
+
+  #chat_bubble {
+    margin-top: 92px;
   }
 }
 
