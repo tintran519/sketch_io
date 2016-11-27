@@ -12,7 +12,7 @@ socket.on('add-message', function (data) {
 
 document.getElementById('btn-send-msg').addEventListener('click', function() {
   socket.emit('add-message', {
-    name: userName.value,
+    name: $('#user-name').attr('value'),
     msg: newMsg.value
   });
   newMsg.value = '';
@@ -23,7 +23,7 @@ function addMessage(data) {
 
   //display as Li list
   messages.innerHTML += ['<li><strong>',
-$('#user-name').attr('value'), ':</strong> ', data.msg + '</li>'].join('');
+data.name, ':</strong> ', data.msg + '</li>'].join('');
   console.log('innerHTML', messages.innerHTML)
 }
 
