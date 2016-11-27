@@ -18,11 +18,14 @@
                     <li><a href="/logout" class="logo" id='user-name' value=<%= user.name %>><%= user.name %> Logout</a></li>
                     <% } else { %>
                         <li><a href="/auth/google" class="btn btn-block btn-social btn-google"><span class="fa fa-google"></span>  Login with Google</a></li>
-
                         <% } %>
                     </ul>
                 </div>
             </nav>
+
+            <div id="topLayer">
+                    <div class="left-half" id="drawBoard">
+
 
                         <canvas id="board"></canvas>
                         <div class="footer">
@@ -60,7 +63,6 @@
                         </div>
 
 
-
                     <div class="right-half">
                         <svg version="1.1" id="chat_bubble" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  viewBox="0 0 512.002 512.002" style="enable-background:new 0 0 512.002 512.002;" xml:space="preserve">
@@ -82,18 +84,22 @@
                         </div>
 
                     <div id="submit">
-
                      <% if (user) { %>
                     <!-- <label id="user-name" value=<%#= user.name %>><%#= user.name %></label> -->
                     <label>Message:</label><textarea id="new-msg"></textarea><br>
                         <input type="button" id="btn-send-msg" value=" Send Message ">
-
                           <% } else { %>
                          <% } %>
+
                     </div>
+
+
+                    </div>
+
                 </div>
             </div>
         </div>
+
         <%- include('../partials/scripts') %>
     </body>
     </html>
