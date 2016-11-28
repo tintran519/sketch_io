@@ -1,4 +1,6 @@
-### [Sketch It Out with Sketch I/O!](#)
+# Sketch I/O
+
+### [Sketch It Out with Sketch I/O!](https://guarded-reef-78522.herokuapp.com/)
 
 ####Description: 
 
@@ -17,43 +19,23 @@ Sketch I/O is a real-time collaborative drawing tool for teams of developers and
 
 ####Getting Started:
 
-Visiting the [Sketch I/O](#) site will present the user with a landing page and a log-in option. Users can use his or her Google account to register for the site and log in. 
+Upon visiting the [Sketch I/O](https://guarded-reef-78522.herokuapp.com/) site, the user can use his or her Google account to register for the site and log in. Once logged in and authenticated, the user has the ability to chat and sketch with other collaborators in real-time. 
 
-(Description of usage) 
+Clicking on the "Artist Tools" bar at the bottom brings up a group of tools for the user, including a color palette, a size option, and predefined shape options. 
 
+Users can chat with collaborators by clicking on the chat icon which will slide the chat interface into view. 
 
-####Unsolved Problems:
+####Planned Features:
+* Additional UI/UX styling
+* Chat notification upon receipt of message
+* Customizable color palette  
+* Landing page
+* Separating user chats into different columns
+* Touch up chat bubble styling
+* Ability to send chat by pressing enter 
+* Voting system for clearing the board
 
-
-####Next Steps/Planned Features:
-
-=======
-
-### [Sketch It Out with Sketch I/O!](#)
-
-####Description: 
-
-Sketch I/O is a real-time collaborative drawing tool for teams of developers and designers.  With our sketching and integrated chat feature, designers can collaborate together in real-time to quickly sketch out a mock website, logo, flowchart, or for any other creative project.
-
-[Check out our Pitch Deck!](http://slides.com/royhwang/deck#/)
-
-####Technologies Used:
-* HTML5/CSS3
-* Node.JS
-* Express
-* Mongoose
-* MongoDB
-* Socket.IO
-
-
-####Getting Started:
-
-Visiting the [Sketch I/O](#) site will present the user with a landing page and a log-in option. Users can use his or her Google account to register for the site and log in. 
-
-(Description of usage) 
-
-
-####Unsolved Problems:
-
-
-####Next Steps/Planned Features:
+####Team Members:
+* Tin Tran
+* Shan Ho
+* Roy Hwang

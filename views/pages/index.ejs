@@ -18,7 +18,6 @@
                     <li><a href="/logout" class="logo" id='user-name' value=<%= user.name %>><%= user.name %> Logout</a></li>
                     <% } else { %>
                         <li><a href="/auth/google" class="btn btn-block btn-social btn-google"><span class="fa fa-google"></span>  Login with Google</a></li>
-
                         <% } %>
                     </ul>
                 </div>
@@ -94,7 +93,6 @@
                     <!-- <label id="user-name" value=<%#= user.name %>><%#= user.name %></label> -->
                     <label>Message:</label><textarea id="new-msg"></textarea><br>
                         <input type="button" id="btn-send-msg" value=" Send Message ">
-
                           <% } else { %>
                          <% } %>
 
@@ -110,4 +108,3 @@
         <%- include('../partials/scripts') %>
     </body>
     </html>
-
