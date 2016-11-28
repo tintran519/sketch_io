@@ -1,7 +1,7 @@
 # Sketch I/O
 
 
-### [Sketch It Out with Sketch I/O!](#)
+### [Sketch It Out with Sketch I/O!](https://guarded-reef-78522.herokuapp.com/)
 
 ####Description: 
 
@@ -20,11 +20,23 @@ Sketch I/O is a real-time collaborative drawing tool for teams of developers and
 
 ####Getting Started:
 
-Upon visiting the [Sketch I/O](#) site, the user can use his or her Google account to register for the site and log in. Once logged in and authenticated, the user has the ability to chat and sketch with other collaborators in real-time. 
+Upon visiting the [Sketch I/O](https://guarded-reef-78522.herokuapp.com/) site, the user can use his or her Google account to register for the site and log in. Once logged in and authenticated, the user has the ability to chat and sketch with other collaborators in real-time. 
 
 Clicking on the "Artist Tools" bar at the bottom brings up a group of tools for the user, including a color palette, a size option, and predefined shape options. 
 
 Users can chat with collaborators by clicking on the chat icon which will slide the chat interface into view. 
+
+####Planned Features:
+* Additional UI/UX styling
+* Chat notification upon receipt of message
+* Customizable color palette  
+* Landing page
+* Separating user chats into different columns
+* Touch up chat bubble styling
+* Ability to send chat by pressing enter 
+* Voting system for clearing the board
+
+
 
 ####Team Members:
 * Tin Tran
