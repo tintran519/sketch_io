@@ -27,9 +27,7 @@ Clicking on the "Artist Tools" bar at the bottom brings up a group of tools for 
 
 Users can chat with collaborators by clicking on the chat icon which will slide the chat interface into view. 
 
-
-####Unsolved Problems:
-
-
-####Next Steps/Planned Features:
-
+####Team Members:
+* Tin Tran
+* Shan Ho
+* Roy Hwang
