@@ -1,6 +1,5 @@
 # Sketch I/O
 
-Picture
 
 ### [Sketch It Out with Sketch I/O!](#)
 
