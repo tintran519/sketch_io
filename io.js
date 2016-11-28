@@ -1,5 +1,5 @@
-//io.js
-
+//========================================
+//Draw socket
 var io = require('socket.io')();
 var line_history = [];
 
@@ -17,10 +17,25 @@ io.on('connection', function(socket) {
     // add received line to history
     line_history.push(data.line);
     // send line to all clients
-    io.emit('draw_line', { line: data.line} );
+    io.emit('draw_line', {
+      line: data.line,
+      color: data.color,
+      size: data.size,
+      shape: data.shape,
+      fill: data.fill,
+      tool: data.tool
+    });
   });
+
+//==========================================
+//Message socket
+    socket.on('add-message', function (data) {
+      // console.log('datauhiuhiuh', data),
+      io.emit('add-message', data);
+
+      // io.emit('add-message','hello world');
+    });
+
 });
 
-
-// io represents socket.io on the server
 module.exports = io;
