@@ -30,10 +30,7 @@ io.on('connection', function(socket) {
 //==========================================
 //Message socket
     socket.on('add-message', function (data) {
-      // console.log('datauhiuhiuh', data),
       io.emit('add-message', data);
-
-      // io.emit('add-message','hello world');
     });
 
 });
