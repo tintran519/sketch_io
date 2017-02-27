@@ -1,12 +1,10 @@
 //chatio
-console.log('chat loaded');
 var messages = document.getElementById('messages');
 var newMsg = document.getElementById('new-msg');
 var userName = document.getElementById('user-name');
 
 socket.on('add-message', function (data) {
 
-  console.log('data',data)
   addMessage(data);
 });
 
@@ -19,12 +17,9 @@ document.getElementById('btn-send-msg').addEventListener('click', function() {
 });
 
 function addMessage(data) {
-  console.log(data)
-
   //display as Li list
   messages.innerHTML += ['<li><strong>',
 data.name, ':</strong> ', data.msg + '</li>'].join('');
-  console.log('innerHTML', messages.innerHTML)
 }
 
 //Toggle Chat
@@ -45,10 +40,8 @@ $("#chat_bubble").on('click', function(event) {
 //opens chat
 function openChat(){
   $(".right-half").addClass('open');
-  // $(".row").css('right','33%');
 }
 
 function closeChat(){
   $(".right-half").removeClass('open');
-  // $(".row").css('right','0%');
 }
