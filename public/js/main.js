@@ -1,8 +1,5 @@
-console.log('JS loaded!');
 var socket = io();
 document.addEventListener("DOMContentLoaded", function() {
-
-  console.log(socket);
 
   //Mouse object to keep track of mouse status
   var mouse = {
@@ -17,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
   var width = window.innerWidth;
   var height = window.innerHeight;
 
-  console.log(width);
   canvas.width = $('#drawBoard').width();
   canvas.height = $('#drawBoard').height();
 
@@ -90,132 +86,99 @@ document.addEventListener("DOMContentLoaded", function() {
 
   mainLoop();
 
-// //Color Palette
-var colorBlue = "#0000ff";
-var colorRed = "#ff0000";
-var colorYellow = "#ffff00";
-var colorBlack = "#000000";
-var colorWhite = "#ffffff"
-var colorGreen = "#008000";
+  // //Color Palette
+  var colorBlue = "#0000ff";
+  var colorRed = "#ff0000";
+  var colorYellow = "#ffff00";
+  var colorBlack = "#000000";
+  var colorWhite = "#ffffff"
+  var colorGreen = "#008000";
 
-//Default Color
-curColor = colorBlack;
-
-
-//Color Toggle
-$('button#blue').on('click',function(){
-  curColor = colorBlue;
-})
-
-$('button#red').on('click',function(){
-  curColor = colorRed;
-})
-
-$('button#yellow').on('click',function(){
-  curColor = colorYellow;
-})
-
-$('button#black').on('click',function(){
+  //Default Color
   curColor = colorBlack;
-})
 
-$('button#green').on('click',function(){
-  curColor = colorGreen;
-})
 
-//Clear Board
-function clear(){
-  if(confirm("Clear your canvas?") == true)
-  context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-};
+  //Color Toggle
+  $('button#blue').on('click',function(){
+    curColor = colorBlue;
+  })
 
-//Clear button
-$('button#clear').on('click', clear);
+  $('button#red').on('click',function(){
+    curColor = colorRed;
+  })
 
-//Eraser
-curTool = "pencil";
+  $('button#yellow').on('click',function(){
+    curColor = colorYellow;
+  })
 
-//Eraser buttons
-$('button#eraser').on('click', function() {
-  curTool = "eraser";
-  canvas.style.cursor = "url('../eraser.png'), auto";
-});
+  $('button#black').on('click',function(){
+    curColor = colorBlack;
+  })
 
-$('button#pencil').on('click', function() {
+  $('button#green').on('click',function(){
+    curColor = colorGreen;
+  })
+
+  //Clear Board
+  function clear(){
+    if(confirm("Clear your canvas?") == true)
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+  };
+
+  //Clear button
+  $('button#clear').on('click', clear);
+
+  //Eraser
   curTool = "pencil";
-  curColor = colorBlack;
-  curShape = "line";
-  canvas.style.cursor = "url('../pencil.png'), auto";
-});
+
+  //Eraser buttons
+  $('button#eraser').on('click', function() {
+    curTool = "eraser";
+    canvas.style.cursor = "url('../eraser.png'), auto";
+  });
+
+  $('button#pencil').on('click', function() {
+    curTool = "pencil";
+    curColor = colorBlack;
+    curShape = "line";
+    canvas.style.cursor = "url('../pencil.png'), auto";
+  });
 
 
-//Size Selection
-var normal = 3;
-var small = 1;
-var large = 7;
+  //Size Selection
+  var normal = 3;
+  var small = 1;
+  var large = 7;
 
-//Default Size
-curSize = normal;
-
-//Size buttons
-$('button#normal').on('click', function() {
+  //Default Size
   curSize = normal;
-})
 
-$('button#small').on('click', function() {
-  curSize = small;
-})
+  //Size buttons
+  $('button#normal').on('click', function() {
+    curSize = normal;
+  })
 
-$('button#large').on('click', function() {
-  curSize = large;
-})
+  $('button#small').on('click', function() {
+    curSize = small;
+  })
 
-
-//Shapes
-//Default shape
-curShape = "line"
-
-//Functions that draws shapes
-function drawTriangle (data) {
-    var line = data.line;
-    context.beginPath();
-    context.moveTo(line[0].x, line[0].y);
-    context.lineTo(line[1].x + 25, line[1].y + 25);
-    context.lineTo(line[1].x + 25, line[1].y - 25);
-    context.closePath();
-    if (data.fill) {
-      context.fillStyle = data.color;
-      context.fill();
-    } else {
-      context.strokeStyle = data.color;
-      context.stroke();
-  }
-};
+  $('button#large').on('click', function() {
+    curSize = large;
+  })
 
 
-function drawSquare (data) {
-    var line = data.line;
-    context.beginPath();
-    context.moveTo(line[0].x, line[0].y);
-    context.lineTo(line[1].x + 25, line[1].y);
-    context.lineTo(line[1].x + 25, line[1].y + 25);
-    context.lineTo(line[1].x, line[1].y + 25);
-    context.closePath();
-    if (data.fill) {
-      context.fillStyle = data.color;
-      context.fill();
-    } else {
-      context.strokeStyle = data.color;
-      context.stroke();
-  }
-};
+  //Shapes
+  //Default shape
+  curShape = "line"
 
-
-function drawCircle (data) {
-    var line = data.line;
-    context.beginPath();
-    context.arc(line[1].x, line[1].y, 25, 0, 2*Math.PI);
-    context.closePath();
+  //Functions that draws shapes
+  function drawTriangle (data) {
+      var line = data.line;
+      context.beginPath();
+      context.moveTo(line[0].x, line[0].y);
+      context.lineTo(line[1].x + 25, line[1].y + 25);
+      context.lineTo(line[1].x + 25, line[1].y - 25);
+      context.closePath();
       if (data.fill) {
         context.fillStyle = data.color;
         context.fill();
@@ -223,64 +186,90 @@ function drawCircle (data) {
         context.strokeStyle = data.color;
         context.stroke();
     }
-};
+  };
 
-//Solid or Outline
-  Fill = false;
 
-$('button#fill').on('click', function(){
-  Fill = true;
-})
+  function drawSquare (data) {
+      var line = data.line;
+      context.beginPath();
+      context.moveTo(line[0].x, line[0].y);
+      context.lineTo(line[1].x + 25, line[1].y);
+      context.lineTo(line[1].x + 25, line[1].y + 25);
+      context.lineTo(line[1].x, line[1].y + 25);
+      context.closePath();
+      if (data.fill) {
+        context.fillStyle = data.color;
+        context.fill();
+      } else {
+        context.strokeStyle = data.color;
+        context.stroke();
+    }
+  };
 
-$('button#outline').on('click', function(){
-  Fill = false;
-})
-//Shape buttons
-$('button#triangle').on('click', function() {
-  curShape = "triangle";
-});
 
-$('button#line').on('click', function() {
-  curShape = "line";
-});
+  function drawCircle (data) {
+      var line = data.line;
+      context.beginPath();
+      context.arc(line[1].x, line[1].y, 25, 0, 2*Math.PI);
+      context.closePath();
+        if (data.fill) {
+          context.fillStyle = data.color;
+          context.fill();
+        } else {
+          context.strokeStyle = data.color;
+          context.stroke();
+      }
+  };
 
-$('button#square').on('click', function() {
-  curShape = "square";
-});
+  //Solid or Outline
+    Fill = false;
 
-$('button#circle').on('click', function() {
-  curShape = "circle";
-});
+  $('button#fill').on('click', function(){
+    Fill = true;
+  })
 
-// //Sliding footer
-// $("#tool_icon").on('click',function () {
-//   $(".slide").slideToggle("slow");
-// });
+  $('button#outline').on('click', function(){
+    Fill = false;
+  })
+  //Shape buttons
+  $('button#triangle').on('click', function() {
+    curShape = "triangle";
+  });
 
-//Toggle Tools
-var toggle_tool = 0
-$("#tool_icon").on('click', function(event) {
-  event.preventDefault();
-  if (toggle_tool === 1) {
-    //not clicked
-    closeTool();
-    toggle_tool = 0;
-  } else {
-    //clicked
-    openTool();
-    toggle_tool = 1;
+  $('button#line').on('click', function() {
+    curShape = "line";
+  });
+
+  $('button#square').on('click', function() {
+    curShape = "square";
+  });
+
+  $('button#circle').on('click', function() {
+    curShape = "circle";
+  });
+
+  //Toggle Tools
+  var toggle_tool = 0
+  $("#tool_icon").on('click', function(event) {
+    event.preventDefault();
+    if (toggle_tool === 1) {
+      //not clicked
+      closeTool();
+      toggle_tool = 0;
+    } else {
+      //clicked
+      openTool();
+      toggle_tool = 1;
+    }
+  })
+
+  //opens tools
+  function openTool(){
+    $(".slide").addClass('open');
   }
-})
 
-//opens tools
-function openTool(){
-  $(".slide").addClass('open');
-  // $(".row").css('right','33%');
-}
-
-function closeTool(){
-  $(".slide").removeClass('open');
-  // $(".row").css('right','0%');
-}
+  function closeTool(){
+    $(".slide").removeClass('open');
+  }
 
 });
